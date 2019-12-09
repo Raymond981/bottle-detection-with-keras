@@ -1,0 +1,131 @@
+<div class="container">
+    <button type="button" class="btn btn-lg btn-block text-white" style="background: #FF8A75;" data-toggle="modal"
+        data-target=".autobus">Registrar Autobus</button>
+    <button type="button" class="btn btn-lg btn-block text-white" style="background: #FF8A75;" data-toggle="modal"
+        data-target=".boleto">Registrar Ciudad</button>
+    <button type="button" class="btn btn-lg btn-block text-white" style="background: #FF8A75;" data-toggle="modal"
+        data-target=".viaje">Registrar Viaje</button>
+    <button type="button" class="btn btn-lg btn-block text-white" style="background: #FF8A75;" data-toggle="modal"
+        data-target=".boletos">Crear boletos</button>
+
+
+    <div class="modal fade boletos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Origen</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let viajes of lista_viajes">
+                            <td>{{lista_ciudades[viajes.id_origen-1].ciudad}}</td>
+                            <td>{{lista_ciudades[viajes.id_destino-1].ciudad}}</td>
+                            <td><button class="btn btn-success"
+                                    (click)="hacerBoletos(viajes.id)" [disabled]="viajes.boletosGenerados">Generar boletos</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade boleto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form [formGroup]="registrar_boleto">
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Ciudad: </label>
+                        <input type="text" formControlName="ciudad" class="form-control"
+                            placeholder="Nombre de la ciudad">
+                    </div>
+
+                    <button class="btn btn-lg btn-block" (click)="registrarBoleto()"
+                        data-dismiss="modal">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade autobus" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form [formGroup]="registrar_autobus">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Clase: </label>
+                        <select formControlName="clase" class="form-control">
+                            <option [value]="clase" *ngFor="let clase of clases">{{clase}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Precio base: </label>
+                        <input type="text" formControlName="precio_base" class="form-control" placeholder="Precio base">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Número de asientos: </label>
+                        <input type="text" formControlName="num_asientos" class="form-control"
+                            placeholder="Número de asientos">
+                    </div>
+
+                    <button class="btn btn-lg btn-block" (click)="registrarAutobus()"
+                        data-dismiss="modal">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade viaje" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form [formGroup]="registrar_viaje">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Autobus: </label>
+                        <select formControlName="id_autobus" class="form-control">
+                            <option [value]="autobus.id" *ngFor="let autobus of lista_autobuses">{{autobus.clase}}
+                                {{autobus.id}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Origen: </label>
+                        <select formControlName="id_origen" class="form-control">
+                            <option [value]="ciudad.id" *ngFor="let ciudad of lista_ciudades">{{ciudad.ciudad}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Origen: </label>
+                        <select formControlName="id_destino" class="form-control">
+                            <option [value]="ciudad.id" *ngFor="let ciudad of lista_ciudades">{{ciudad.ciudad}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Distancia (KM): </label>
+                        <input type="text" formControlName="distancia" class="form-control"
+                            placeholder="Distancia (KM)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Fecha de salida:</label>
+                        <input type="date" formControlName="fecha_de_salida" class="form-control"
+                            placeholder="Fecha de salida">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Hora de salida:</label>
+                        <input type="time" min="18:00" max="21:00" step="3600" formControlName="hora_de_salida"
+                            class="form-control">
+                    </div>
+                    <button class="btn btn-lg btn-block" (click)="registrarViaje()"
+                        data-dismiss="modal">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

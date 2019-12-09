@@ -1,0 +1,113 @@
+<div class="container pt-4">
+    <ul class="nav justify-content-center">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/ado_logo.png" width="114" height="40" class="d-inline-block align-top" alt="">
+        </a>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Nosotros</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Políticas de privacidad</a>
+        </li>
+    </ul>
+    <br>
+    <div class="card border-danger mb-3">
+        <h5 class="card-header">Adquiere tus boletos hoy.</h5>
+        <div class="card-body text-danger">
+            <!--INICIO FORMULARIO-->
+            <form [formGroup]="form_busqueda">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">¿De dondé salimos?</label>
+                            <select formControlName="id_origen" class="form-control">
+                                <option [value]="ciudad.id" *ngFor="let ciudad of ciudades">{{ciudad.ciudad}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">¿A dónde vamos?</label>
+                            <select formControlName="id_destino" class="form-control">
+                                <option [value]="ciudad.id" *ngFor="let ciudad of ciudades">{{ciudad.ciudad}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de salida:</label>
+                            <input type="date" formControlName="fecha_de_salida" class="form-control"
+                                placeholder="Fecha de salida">
+                        </div>
+                    </div>
+                    <!--  <div class="col-3">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Hora de salida:</label>
+                            <input type="time" min="18:00" max="21:00" step="3600" formControlName="hora_de_salida"
+                                class="form-control">
+                        </div>
+                    </div>-->
+                </div>
+                <button type="button" class="btn btn-lg btn-block text-white" style="background: #FF8A75;"
+                    data-toggle="modal" data-target=".bd-example-modal-lg" (click)="buscar()">Buscar
+                    viaje</button>
+
+            </form>
+            <!--FIN FORMULARIO-->
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Origen</th>
+                                    <th scope="col">Destino</th>
+                                    <th scope="col">Clase autobus</th>
+                                    <th scope="col">Fecha de salida</th>
+                                    <th scope="col">Hora de salida</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let viajes of list_viajes">
+                                    <td>{{ciudades[viajes.id_origen-1].ciudad}}</td>
+                                    <td>{{ciudades[viajes.id_destino-1].ciudad}}</td>
+                                    <td>{{list_autobuses[viajes.id_autobus-1].clase}}</td>
+                                    <td>{{viajes.fecha_de_salida}}</td>
+                                    <td>{{viajes.hora_de_salida}}</td>
+                                    <td>$ {{viajes.precio}}</td>
+                                    <td><button class="btn btn-success"
+                                            (click)="comprarBoleto(viajes.id_autobus, viajes.id)">Comprar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            Viaja seguro
+        </div>
+    </div>
+
+    <h2 class="text-center p-2">¿Ya te enteraste?</h2>
+
+    <div class="card-group">
+        <div class="card">
+            <img src="../assets/índice.jpg" class="card-img-top" alt="...">
+        </div>
+        <div class="card">
+            <img src="../assets/índice2.jpg" class="card-img-top" alt="...">
+        </div>
+        <div class="card">
+            <img src="../assets/índice3.jpg" class="card-img-top" alt="...">
+        </div>
+    </div>
+</div>

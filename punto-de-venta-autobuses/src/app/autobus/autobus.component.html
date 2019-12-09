@@ -1,0 +1,96 @@
+<div class="autobus container p-3 mx-auto">
+        <table class="mx-auto">
+                <tbody>
+                        <tr class="">
+                                <td><button class="button button-style" (click)="reservarBoleto(4)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">4</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(8)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">8</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(12)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">12</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(16)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">16</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(20)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">20</button></td>
+                        </tr>
+                        <tr>
+                                <td><button class="button button-style" (click)="reservarBoleto(3)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">3</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(7)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">7</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(11)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">11</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(15)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">15</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(19)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">19</button></td>
+                        </tr>
+                        <br><br>
+                        <tr>
+                                <td><button class="button button-style" (click)="reservarBoleto(2)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">2</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(6)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">6</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(10)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">10</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(14)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">14</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(18)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">18</button></td>
+                        </tr>
+                        <tr>
+                                <td><button class="button button-style" (click)="reservarBoleto(1)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">1</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(5)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">5</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(9)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">9</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(13)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">13</button></td>
+                                <td><button class="button button-style" (click)="reservarBoleto(17)" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg">17</button></td>
+                        </tr>
+                </tbody>
+        </table>
+        <!-- DivTable.com -->
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                                <div class="container">
+                                        <form [formGroup]="registrar_boleto">
+                                                <div class="form-group">
+                                                        <label for="formGroupExampleInput">Nombre: </label>
+                                                        <input type="text" formControlName="nombre" class="form-control"
+                                                                placeholder="Nombre del pasajero">
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <label for="formGroupExampleInput">Correo eléctronico: </label>
+                                                        <input type="email" formControlName="correo"
+                                                                class="form-control"
+                                                                placeholder="Correo eléctronico del pasajero">
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <label for="formGroupExampleInput">Tipo de boleto: </label>
+                                                        <select formControlName="tipo" class="form-control">
+                                                                <option [value]="tipo"
+                                                                        *ngFor="let tipo of tipos">
+                                                                        {{tipo}}</option>
+                                                        </select>
+                                                </div>
+
+                                                <div id="card-element"></div>
+
+                                                <button class="btn btn-lg btn-block" (click)="comprarBoleto()"
+                                                        data-dismiss="modal">Comprar boleto</button>
+                                        </form>
+                                </div>
+                        </div>
+
+
+                </div>
+        </div>
+</div>
